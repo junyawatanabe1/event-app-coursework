@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import Event  # Убедись, что модель называется Event
+from .models import Event  
 
 admin.site.register(Event)

@@ -43,7 +43,6 @@ function Login() {
   );
 }
 
-// Экспортируем стили, чтобы использовать их и в регистрации
 export const formContainerStyle = {
   maxWidth: '400px',
   margin: '40px auto',
