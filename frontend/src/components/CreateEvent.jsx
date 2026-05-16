@@ -25,7 +25,7 @@ function CreateEvent() {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert('Событие успешно создано!');
-      navigate('/'); // Возвращаемся на главную к списку
+      navigate('/'); 
     } catch (err) {
       alert('Ошибка при создании. Проверьте заполнение полей.');
     }
@@ -111,7 +111,6 @@ function CreateEvent() {
   );
 }
 
-// Общий стиль для инпутов, чтобы форма выглядела аккуратно
 const inputStyle = {
   padding: '15px',
   borderRadius: '12px',

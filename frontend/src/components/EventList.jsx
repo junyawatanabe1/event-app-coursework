@@ -4,7 +4,6 @@ import axios from 'axios';
 function EventList() {
   const [events, setEvents] = useState([]);
 
-  // загрузка списка событий с бэкенда
   const fetchEvents = () => {
     axios.get('http://127.0.0.1:8000/api/events/')
       .then(res => setEvents(res.data))
@@ -15,11 +14,9 @@ function EventList() {
     fetchEvents();
   }, []);
 
-  // функция удаления с проверкой авторизации
   const handleDelete = async (id) => {
     const token = localStorage.getItem('access');
     
-    // блокировка удаления для гостей
     if (!token) {
       alert("Удаление доступно только авторизованным пользователям!");
       return;
@@ -30,7 +27,7 @@ function EventList() {
         await axios.delete(`http://127.0.0.1:8000/api/events/${id}/`, {
           headers: { Authorization: `Bearer ${token}` }
         });
-        fetchEvents(); // обновление списка
+        fetchEvents(); 
       } catch (err) {
         if (err.response && err.response.status === 401) {
           alert("Сессия истекла. Пожалуйста, войдите снова.");
@@ -44,7 +41,6 @@ function EventList() {
   return (
     <div style={{ width: '100%', minHeight: '60vh', display: 'flex', flexDirection: 'column' }}>
       {events.length > 0 ? (
-        /* Сетка карточек, если события есть */
         <div style={{ 
           display: 'grid', 
           gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', 
@@ -74,7 +70,6 @@ function EventList() {
           ))}
         </div>
       ) : (
-        /* Сообщение по центру, если событий нет */
         <div style={emptyStateStyle}>
           <h2 style={{ color: '#b2bec3', fontWeight: '400', letterSpacing: '2px', fontSize: '24px' }}>
             СОБЫТИЙ НЕТ!
@@ -86,7 +81,6 @@ function EventList() {
   );
 }
 
-// Стили
 const cardStyle = {
   padding: '30px',
   borderRadius: '20px',

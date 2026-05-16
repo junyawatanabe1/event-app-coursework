@@ -2,13 +2,11 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import Event
 
-# сериализатор для событий
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = '__all__'
 
-# сериализатор для пользователей
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import generics, permissions
 from .models import Event 
-from .serializers import EventSerializer, UserSerializer # Импортируем оба
+from .serializers import EventSerializer, UserSerializer 
 
 
 class RegisterView(generics.CreateAPIView):
@@ -15,11 +15,9 @@ class EventListCreate(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
-        # Пока просто сохраняем
         serializer.save()
         
 class EventDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    # Удалять могут только авторизованные пользователи
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]

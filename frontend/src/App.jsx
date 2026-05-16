@@ -7,7 +7,7 @@ import CreateEvent from './components/CreateEvent';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Состояние меню
+  const [isMenuOpen, setIsMenuOpen] = useState(false); 
 
   useEffect(() => {
     const savedUser = localStorage.getItem('username');
@@ -20,7 +20,6 @@ function App() {
     window.location.href = '/login';
   };
 
-  // Закрытие меню при клике на ссылку (для мобилок)
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
@@ -30,7 +29,7 @@ function App() {
         <header style={headerStyle}>
           <div style={logoStyle}>МОИ МЕРОПРИЯТИЯ</div>
 
-          {/* Иконка Бургера (видна только на мобилках) */}
+          {}
           <div 
           className="burger-icon" 
           style={burgerIconStyle} 
@@ -41,7 +40,7 @@ function App() {
           <div style={lineStyle(isMenuOpen)}></div>
           </div>
 
-          {/* Навигация */}
+          {}
           <nav style={navContainerStyle(isMenuOpen)}>
             <Link to="/" style={navLinkStyle} onClick={closeMenu}>ГЛАВНАЯ</Link>
             <Link to="/create" style={navLinkStyle} onClick={closeMenu}>СОЗДАТЬ</Link>
@@ -60,7 +59,7 @@ function App() {
           </nav>
         </header>
 
-        {/* Затемнение фона при открытом меню */}
+        {}
         {isMenuOpen && <div style={overlayStyle} onClick={closeMenu}></div>}
 
         <main style={mainContentStyle}>
@@ -73,7 +72,7 @@ function App() {
         </main>
       </div>
 
-      {/* Вставляем CSS для медиа-запросов прямо в документ */}
+      {}
       <style>{`
         @media (max-width: 820px) {
           header { padding: 0 20px !important; }
@@ -99,8 +98,6 @@ function App() {
   );
 }
 
-// --- СТИЛИ ---
-
 const headerStyle = {
   display: 'flex',
   justifyContent: 'space-between',
@@ -122,12 +119,12 @@ const navContainerStyle = (isOpen) => ({
 });
 
 const burgerIconStyle = {
-  display: 'none', // Скрыт по умолчанию
+  display: 'none', 
   flexDirection: 'column',
   gap: '6px',
   cursor: 'pointer',
   padding: '10px',
-  className: 'burger-icon' // Чтобы найти в медиа-запросах
+  className: 'burger-icon' 
 };
 
 const lineStyle = (isOpen) => ({
